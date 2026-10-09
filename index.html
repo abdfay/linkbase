@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linkbase</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>LINKBASE</h1>
+        <p>Your personal corner of the internet.</p>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <input
+                type="search"
+                id="search-input"
+                placeholder="Search your links..."
+            >
+        </section>
+        <section class="add-link-section">
+    <h2>Add a link</h2>
+
+    <form id="link-form">
+        <input
+            type="text"
+            id="link-name"
+            placeholder="Link name"
+            required
+        >
+
+        <input
+            type="url"
+            id="link-url"
+            placeholder="https://example.com"
+            required
+        >
+
+        <input
+            type="text"
+            id="link-category"
+            placeholder="Category (e.g. Study)"
+            required
+        >
+
+        <button type="submit">Add link</button>
+    </form>
+</section>
+        <section class="links-section">
+            <h2>Your links</h2>
+            <div id="links-container"></div>
+        </section>
+        <div id="edit-modal" class="modal hidden">
+    <div class="modal-content">
+        <h2>Edit link</h2>
+
+        <form id="edit-form">
+            <label for="edit-name">Name</label>
+            <input id="edit-name" type="text" required>
+
+            <label for="edit-url">URL</label>
+            <input id="edit-url" type="url" required>
+
+            <label for="edit-category">Category</label>
+            <input id="edit-category" type="text" required>
+
+            <div class="modal-actions">
+                <button type="submit">Save changes</button>
+                <button type="button" id="cancel-edit">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+    </main>
+
+</body>
+</html>

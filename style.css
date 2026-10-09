@@ -1,0 +1,603 @@
+/* =========================================
+   LINKBASE // STARK SYSTEMS INTERFACE
+   ========================================= */
+
+:root {
+    color-scheme: dark;
+    --void: #02070d;
+    --panel: rgba(4, 17, 30, 0.94);
+    --panel-light: rgba(7, 28, 45, 0.96);
+    --cyan: #16d9ff;
+    --blue: #008cff;
+    --dim-cyan: #087caa;
+    --gold: #ffbd43;
+    --white: #dff8ff;
+    --muted: #6ba5bf;
+    --line: rgba(22, 217, 255, 0.38);
+    --glow: 0 0 12px rgba(22, 217, 255, 0.25);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    background: var(--void);
+}
+
+body {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    margin: 0;
+    padding: 42px 30px 60px;
+    overflow-x: hidden;
+    background:
+        radial-gradient(ellipse at 50% 0%,
+            rgba(0, 100, 180, 0.17), transparent 48%),
+        radial-gradient(ellipse at 100% 70%,
+            rgba(0, 80, 130, 0.08), transparent 40%),
+        var(--void);
+    color: var(--white);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Technical grid */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(0, 180, 255, 0.045) 1px,
+            transparent 1px),
+        linear-gradient(90deg, rgba(0, 180, 255, 0.045) 1px,
+            transparent 1px);
+    background-size: 32px 32px;
+    mask-image: linear-gradient(to bottom, black, transparent 95%);
+}
+
+/* Subtle scanning light */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.12;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 3px,
+        rgba(35, 180, 255, 0.08) 4px
+    );
+}
+
+/* =========================================
+   HEADER // SYSTEM IDENTITY
+   ========================================= */
+
+header,
+main {
+    width: 100%;
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+header {
+    position: relative;
+    padding: 0 0 28px;
+    margin-bottom: 34px;
+    border-bottom: 1px solid var(--line);
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 155px;
+    height: 3px;
+    background: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan);
+}
+
+header h1 {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    margin: 0;
+    color: var(--white);
+    font-size: clamp(27px, 4vw, 39px);
+    font-weight: 300;
+    letter-spacing: 7px;
+    text-shadow: 0 0 18px rgba(22, 217, 255, 0.38);
+}
+
+/* Arc-reactor-inspired emblem */
+header h1::before {
+    content: "";
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--cyan);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle,
+            #e6ffff 0 4%,
+            var(--cyan) 7% 13%,
+            transparent 17% 32%,
+            var(--blue) 35% 39%,
+            transparent 42% 55%,
+            var(--cyan) 58% 63%,
+            transparent 66%);
+    box-shadow:
+        0 0 8px var(--cyan),
+        inset 0 0 12px rgba(22, 217, 255, 0.45);
+}
+
+header p {
+    margin: 9px 0 0 65px;
+    color: var(--cyan);
+    font-size: 12px;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+}
+
+/* =========================================
+   MAIN LAYOUT
+   ========================================= */
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+h2 {
+    color: var(--cyan);
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 1.7px;
+    text-transform: uppercase;
+}
+
+.links-section h2,
+.add-link-section h2 {
+    margin: 0 0 19px;
+}
+
+/* =========================================
+   SEARCH // INPUT SCANNER
+   ========================================= */
+
+.search-section {
+    position: relative;
+}
+
+#search-input {
+    display: block;
+    width: 100%;
+    padding: 17px 20px 17px 48px;
+    background:
+        linear-gradient(110deg,
+            rgba(0, 140, 255, 0.08), transparent 65%),
+        rgba(1, 12, 23, 0.92);
+    border: 1px solid var(--dim-cyan);
+    border-radius: 2px;
+    outline: none;
+    color: var(--white);
+    font: inherit;
+    font-size: 15px;
+    box-shadow: inset 0 0 20px rgba(0, 100, 180, 0.06);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-section::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 19px;
+    width: 13px;
+    height: 13px;
+    border: 2px solid var(--cyan);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.search-section::after {
+    content: "";
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    width: 8px;
+    height: 2px;
+    background: var(--cyan);
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+#search-input::placeholder,
+#link-form input::placeholder {
+    color: #54869e;
+}
+
+#search-input:focus,
+#link-form input:focus,
+#edit-form input:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 14px rgba(22, 217, 255, 0.16);
+}
+
+/* =========================================
+   ADD LINK // COMMAND PANEL
+   ========================================= */
+
+.add-link-section {
+    position: relative;
+    padding: 24px;
+    background:
+        linear-gradient(135deg,
+            rgba(0, 140, 255, 0.09), transparent 45%),
+        var(--panel);
+    border: 1px solid var(--dim-cyan);
+    border-left: 3px solid var(--cyan);
+    box-shadow: inset 0 0 24px rgba(0, 100, 180, 0.05);
+}
+
+.add-link-section::after {
+    content: "INPUT / NEW RESOURCE";
+    position: absolute;
+    top: -9px;
+    right: 18px;
+    padding: 0 9px;
+    background: var(--void);
+    color: var(--gold);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+}
+
+#link-form {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr 0.8fr auto;
+    align-items: end;
+    gap: 12px;
+}
+
+#link-form input {
+    width: 100%;
+    min-width: 0;
+    padding: 13px 12px;
+    background: rgba(1, 10, 19, 0.95);
+    border: 1px solid #164a67;
+    border-radius: 2px;
+    outline: none;
+    color: var(--white);
+    font: inherit;
+    font-size: 13px;
+}
+
+#link-form button {
+    padding: 13px 18px;
+    background: linear-gradient(110deg, #16d9ff, #008cff);
+    border: 1px solid #8cf1ff;
+    border-radius: 2px;
+    color: #00101a;
+    font: inherit;
+    font-weight: 750;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 0 13px rgba(22, 217, 255, 0.24);
+    transition: box-shadow 0.2s, filter 0.2s;
+}
+
+#link-form button:hover {
+    filter: brightness(1.17);
+    box-shadow: 0 0 22px rgba(22, 217, 255, 0.48);
+}
+
+/* =========================================
+   LINK GRID // HOLOGRAPHIC PANELS
+   ========================================= */
+
+#links-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+    gap: 15px;
+}
+
+.link-card {
+    position: relative;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 13px;
+    padding: 21px 19px;
+    overflow: hidden;
+    background:
+        linear-gradient(145deg,
+            rgba(0, 140, 255, 0.075), transparent 55%),
+        var(--panel);
+    border: 1px solid #15506e;
+    border-radius: 2px;
+    transition: border-color 0.2s, background 0.2s,
+        box-shadow 0.2s, transform 0.2s;
+}
+
+/* Illuminated corner detail */
+.link-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
+}
+
+.link-card::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 22px;
+    height: 2px;
+    background: var(--dim-cyan);
+}
+
+.link-card:hover {
+    background:
+        linear-gradient(145deg,
+            rgba(0, 170, 255, 0.13), transparent 65%),
+        var(--panel-light);
+    border-color: var(--cyan);
+    box-shadow: inset 0 0 22px rgba(0, 140, 255, 0.06),
+        0 0 15px rgba(0, 180, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+.link-title {
+    max-width: 100%;
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 650;
+    letter-spacing: 0.6px;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.link-title:hover {
+    color: var(--cyan);
+    text-shadow: 0 0 10px rgba(22, 217, 255, 0.4);
+}
+
+.link-category {
+    margin: 0;
+    padding: 4px 10px;
+    background: rgba(0, 140, 255, 0.08);
+    border: 1px solid rgba(0, 180, 255, 0.4);
+    border-radius: 2px;
+    color: var(--cyan);
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+.link-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.link-actions button {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 10px;
+    background: rgba(0, 15, 27, 0.8);
+    border: 1px solid #174760;
+    border-radius: 2px;
+    color: #8acde7;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s,
+        background 0.2s;
+}
+
+.link-actions button:hover {
+    background: rgba(0, 160, 220, 0.12);
+    border-color: var(--cyan);
+    color: #e9fcff;
+}
+
+/* =========================================
+   EDIT MODAL // SYSTEM OVERRIDE
+   ========================================= */
+
+.hidden {
+    display: none !important;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 5, 12, 0.86);
+    backdrop-filter: blur(7px);
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    padding: 30px;
+    background:
+        linear-gradient(135deg,
+            rgba(0, 140, 255, 0.11), transparent 45%),
+        #04101d;
+    border: 1px solid var(--cyan);
+    border-top: 3px solid var(--cyan);
+    border-radius: 2px;
+    box-shadow: 0 0 35px rgba(0, 160, 255, 0.16),
+        inset 0 0 28px rgba(0, 100, 180, 0.07);
+}
+
+.modal-content h2 {
+    margin: 0 0 25px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+}
+
+#edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#edit-form label {
+    margin-top: 5px;
+    color: var(--cyan);
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+#edit-form input {
+    width: 100%;
+    min-width: 0;
+    padding: 13px;
+    background: #020b14;
+    border: 1px solid #164a67;
+    border-radius: 2px;
+    outline: none;
+    color: var(--white);
+    font: inherit;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.modal-actions button {
+    flex: 1;
+    padding: 13px 10px;
+    background: transparent;
+    border: 1px solid #1a526f;
+    border-radius: 2px;
+    color: var(--cyan);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    cursor: pointer;
+    transition: box-shadow 0.2s, background 0.2s;
+}
+
+.modal-actions button[type="submit"] {
+    background: linear-gradient(100deg, #16d9ff, #008cff);
+    border-color: var(--cyan);
+    color: #00101a;
+}
+
+.modal-actions button:hover {
+    box-shadow: 0 0 14px rgba(22, 217, 255, 0.24);
+}
+
+/* =========================================
+   RESPONSIVE // MOBILE SYSTEMS
+   ========================================= */
+
+@media (max-width: 760px) {
+    body {
+        padding: 28px 17px 42px;
+    }
+
+    header {
+        margin-bottom: 25px;
+    }
+
+    header h1 {
+        gap: 12px;
+        font-size: 27px;
+        letter-spacing: 4px;
+    }
+
+    header h1::before {
+        flex-basis: 39px;
+        width: 39px;
+        height: 39px;
+    }
+
+    header p {
+        margin-left: 51px;
+        font-size: 10px;
+        letter-spacing: 1.3px;
+    }
+
+    main {
+        gap: 23px;
+    }
+
+    #link-form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #links-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .add-link-section {
+        padding: 19px 15px;
+    }
+
+    .link-card {
+        padding: 16px 13px;
+    }
+}
+
+@media (max-width: 420px) {
+    body {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    header h1 {
+        font-size: 23px;
+        letter-spacing: 3px;
+    }
+
+    #link-form,
+    #links-container {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        padding: 22px 18px;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
