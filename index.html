@@ -3,78 +3,315 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linkbase</title>
+    <meta name="theme-color" content="#02070d">
+    <title>LINKBASE // MARK II</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
-    <header>
-        <h1>LINKBASE</h1>
-        <p>Your personal corner of the internet.</p>
-    </header>
+    <div class="app-shell">
 
-    <main>
-        <section class="search-section">
-            <input
-                type="search"
-                id="search-input"
-                placeholder="Search your links..."
-            >
-        </section>
-        <section class="add-link-section">
-    <h2>Add a link</h2>
-
-    <form id="link-form">
-        <input
-            type="text"
-            id="link-name"
-            placeholder="Link name"
-            required
-        >
-
-        <input
-            type="url"
-            id="link-url"
-            placeholder="https://example.com"
-            required
-        >
-
-        <input
-            type="text"
-            id="link-category"
-            placeholder="Category (e.g. Study)"
-            required
-        >
-
-        <button type="submit">Add link</button>
-    </form>
-</section>
-        <section class="links-section">
-            <h2>Your links</h2>
-            <div id="links-container"></div>
-        </section>
-        <div id="edit-modal" class="modal hidden">
-    <div class="modal-content">
-        <h2>Edit link</h2>
-
-        <form id="edit-form">
-            <label for="edit-name">Name</label>
-            <input id="edit-name" type="text" required>
-
-            <label for="edit-url">URL</label>
-            <input id="edit-url" type="url" required>
-
-            <label for="edit-category">Category</label>
-            <input id="edit-category" type="text" required>
-
-            <div class="modal-actions">
-                <button type="submit">Save changes</button>
-                <button type="button" id="cancel-edit">Cancel</button>
+        <!-- TOP SYSTEM HEADER -->
+        <div class="system-bar">
+            <div class="system-brand">
+                ABD. FAYAD MADE <span>//</span> LINKBASE
             </div>
-        </form>
-    </div>
-</div>
-    </main>
 
+            <div class="system-status">
+                <span class="status-indicator"></span>
+                ALL SYSTEMS ONLINE
+            </div>
+
+            <div class="system-clock-wrap">
+                <span class="system-clock" id="system-clock">--:--:--</span>
+                <span class="system-date" id="system-date">LOCAL TIME</span>
+            </div>
+        </div>
+
+        <header class="main-header">
+            <div class="header-identity">
+                <h1>LINKBASE <span class="mark-label">MARK II</span></h1>
+                <p>YOUR LINKS. ORGANIZED. ANYWHERE.</p>
+            </div>
+
+            <div class="header-center">
+                <span class="eyebrow">ABD. FAYAD MADE</span>
+                <span class="header-divider"></span>
+                <span class="header-subtitle">PERSONAL SYSTEMS</span>
+            </div>
+
+            <div class="header-indicators">
+                <div><span class="indicator-dot"></span> ONLINE</div>
+                <div><span class="indicator-dot"></span> LOCAL STORAGE</div>
+            </div>
+        </header>
+
+        <!-- THREE-COLUMN WORKSPACE -->
+        <div class="workspace">
+
+            <!-- LEFT NAVIGATION RAIL -->
+            <nav class="nav-rail" aria-label="Main navigation">
+                <div class="rail-label">SYS</div>
+
+                <button class="rail-button active" id="nav-home"
+                    type="button" aria-label="Home" title="Home">
+                    <span class="rail-icon">⌂</span>
+                    <span class="rail-caption">HOME</span>
+                </button>
+
+                <button class="rail-button" id="nav-search"
+                    type="button" aria-label="Search links" title="Search">
+                    <span class="rail-icon">⌕</span>
+                    <span class="rail-caption">SEARCH</span>
+                </button>
+
+                <button class="rail-button" id="nav-add"
+                    type="button" aria-label="Add a link" title="Add link">
+                    <span class="rail-icon">＋</span>
+                    <span class="rail-caption">ADD</span>
+                </button>
+
+                <div class="rail-spacer"></div>
+
+                <div class="rail-system-mark" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                    <small>MK.02</small>
+                </div>
+            </nav>
+
+            <!-- CENTRAL WORKSPACE -->
+            <main class="main-workspace" id="home">
+
+                <section class="search-section hud-panel" aria-label="Search">
+                    <div class="section-index">01 / SCANNER</div>
+                    <label class="visually-hidden" for="search-input">
+                        Search your links
+                    </label>
+                    <input
+                        type="search"
+                        id="search-input"
+                        placeholder="SEARCH DATABASE..."
+                        autocomplete="off"
+                    >
+                    <span class="search-hint">FIND RESOURCE</span>
+                </section>
+
+                <section class="add-link-section hud-panel" id="add-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <span class="eyebrow">RESOURCE MANAGEMENT / 01</span>
+                            <h2>ADD NEW LINK</h2>
+                        </div>
+                        <span class="panel-code">INPUT // 001</span>
+                    </div>
+
+                    <form id="link-form">
+                        <div class="field-group">
+                            <label for="link-name">NAME</label>
+                            <input
+                                type="text"
+                                id="link-name"
+                                placeholder="e.g. Google"
+                                required
+                            >
+                        </div>
+
+                        <div class="field-group">
+                            <label for="link-url">URL / ADDRESS</label>
+                            <input
+                                type="url"
+                                id="link-url"
+                                placeholder="https://example.com"
+                                required
+                            >
+                        </div>
+
+                        <div class="field-group">
+                            <label for="link-category">CATEGORY</label>
+                            <input
+                                type="text"
+                                id="link-category"
+                                placeholder="e.g. Tools"
+                                required
+                            >
+                        </div>
+
+                        <button type="submit" class="primary-button">
+                            <span>＋</span> ADD LINK
+                        </button>
+                    </form>
+
+                    <div class="panel-footnote">
+                        <span class="tiny-status"></span>
+                        NEW RESOURCE WILL BE STORED LOCALLY
+                    </div>
+                </section>
+
+                <section class="links-section" id="links-section">
+                    <div class="links-heading">
+                        <div>
+                            <span class="eyebrow">PERSONAL DATABASE / 02</span>
+                            <h2>YOUR LINKS <span class="heading-slash">//</span></h2>
+                        </div>
+
+                        <div class="resource-count">
+                            <span id="link-count">--</span>
+                            <span>RESOURCES</span>
+                        </div>
+                    </div>
+
+                    <div id="links-container" aria-live="polite"></div>
+
+                    <div class="empty-state hidden" id="empty-state">
+                        <span class="empty-symbol">⌕</span>
+                        <h3>NO RESOURCES DETECTED</h3>
+                        <p>Try another search or add a new link to your database.</p>
+                    </div>
+                </section>
+            </main>
+
+            <!-- RIGHT HUD SIDEBAR -->
+            <aside class="right-sidebar" aria-label="System information">
+
+                <section class="globe-panel hud-panel">
+                    <div class="side-panel-heading">
+                        <span class="eyebrow">NETWORK / OVERVIEW</span>
+                        <span class="mini-cross">＋</span>
+                    </div>
+
+                    <div class="globe-visual" aria-hidden="true">
+                        <div class="globe-orbit orbit-one"></div>
+                        <div class="globe-orbit orbit-two"></div>
+                        <div class="globe-orbit orbit-three"></div>
+                        <div class="globe-core"></div>
+                        <div class="globe-crosshair"></div>
+                        <span class="globe-coordinate coord-top">40° 42' N</span>
+                        <span class="globe-coordinate coord-bottom">SYSTEM MK.02</span>
+                    </div>
+
+                    <div class="globe-caption">
+                        <span>BETTER LINKS.</span>
+                        <span>BIGGER IDEAS.</span>
+                    </div>
+                    <div class="micro-line"></div>
+                    <p class="side-description">
+                        YOUR PERSONAL GATEWAY TO THE DIGITAL WORLD.
+                    </p>
+                </section>
+
+                <section class="quick-access hud-panel">
+                    <div class="side-panel-heading">
+                        <div>
+                            <span class="eyebrow">DIRECTORY / 03</span>
+                            <h2>QUICK ACCESS</h2>
+                        </div>
+                        <span class="panel-code">INDEX</span>
+                    </div>
+
+                    <div class="quick-access-list">
+                        <button type="button" class="quick-item" data-category="Browser">
+                            <span class="quick-number">01</span>
+                            <span class="quick-name">BROWSER</span>
+                            <span class="quick-arrow">↗</span>
+                        </button>
+                        <button type="button" class="quick-item" data-category="Bookmarks">
+                            <span class="quick-number">02</span>
+                            <span class="quick-name">BOOKMARKS</span>
+                            <span class="quick-arrow">↗</span>
+                        </button>
+                        <button type="button" class="quick-item" data-category="Productivity">
+                            <span class="quick-number">03</span>
+                            <span class="quick-name">PRODUCTIVITY</span>
+                            <span class="quick-arrow">↗</span>
+                        </button>
+                        <button type="button" class="quick-item" data-category="Development">
+                            <span class="quick-number">04</span>
+                            <span class="quick-name">DEVELOPMENT</span>
+                            <span class="quick-arrow">↗</span>
+                        </button>
+                        <button type="button" class="quick-item" data-category="Entertainment">
+                            <span class="quick-number">05</span>
+                            <span class="quick-name">ENTERTAINMENT</span>
+                            <span class="quick-arrow">↗</span>
+                        </button>
+                        <button type="button" class="quick-item" data-category="Learning">
+                            <span class="quick-number">06</span>
+                            <span class="quick-name">LEARNING</span>
+                            <span class="quick-arrow">↗</span>
+                        </button>
+                    </div>
+
+                    <p class="quick-footnote">SELECT A DIRECTORY TO FILTER RESOURCES</p>
+                </section>
+
+                <div class="sidebar-readout">
+                    <span class="readout-pulse"></span>
+                    <span>LOCAL SYSTEM</span>
+                    <span class="readout-value">ACTIVE</span>
+                </div>
+            </aside>
+        </div>
+
+        <!-- EDIT LINK MODAL -->
+        <div id="edit-modal" class="modal hidden">
+            <div class="modal-backdrop" data-close-modal></div>
+
+            <div class="modal-content hud-panel"
+                role="dialog" aria-modal="true" aria-labelledby="edit-title">
+
+                <div class="modal-heading">
+                    <div>
+                        <span class="eyebrow">RESOURCE MANAGEMENT / OVERRIDE</span>
+                        <h2 id="edit-title">EDIT LINK</h2>
+                    </div>
+                    <button type="button" class="modal-close"
+                        id="close-edit" aria-label="Close edit window">×</button>
+                </div>
+
+                <form id="edit-form">
+                    <label for="edit-name">NAME</label>
+                    <input id="edit-name" type="text" required>
+
+                    <label for="edit-url">URL / ADDRESS</label>
+                    <input id="edit-url" type="url" required>
+
+                    <label for="edit-category">CATEGORY</label>
+                    <input id="edit-category" type="text" required>
+
+                    <div class="modal-actions">
+                        <button type="submit" class="primary-button">
+                            SAVE CHANGES
+                        </button>
+                        <button type="button" id="cancel-edit" class="secondary-button">
+                            CANCEL
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="system-footer">
+            <div class="footer-quote">
+                <span class="quote-mark">“</span>
+                <div>
+                    <p>SOMETIMES YOU GOTTA RUN BEFORE YOU CAN WALK.</p>
+                    <span>— TONY STARK</span>
+                </div>
+            </div>
+
+            <div class="footer-meter" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+            </div>
+
+            <div class="footer-identity">
+                <span>LINKBASE <b>MK.II</b></span>
+                <span>ABD. FAYAD MADE // PERSONAL SYSTEMS</span>
+            </div>
+        </footer>
+
+    </div>
 </body>
 </html>
